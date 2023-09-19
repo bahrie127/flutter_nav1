@@ -12,11 +12,35 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Jago Flutter'),
+      home: TextWidget(),
+    );
+  }
+}
+
+class TextWidget extends StatelessWidget {
+  const TextWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Text"),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Text(
+              'Discover the most modern furniture',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 22.0,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1,
+              ),
+            ),
+          ],
         ),
-        body: const Text('Belajar Bersama Jago Flutter'),
       ),
     );
   }
