@@ -12,31 +12,41 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TextWidget(),
+      home: ButtonWidget(),
     );
   }
 }
 
-class TextWidget extends StatelessWidget {
-  const TextWidget({Key? key}) : super(key: key);
+class ButtonWidget extends StatelessWidget {
+  const ButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Text"),
+        title: const Text("Button"),
+        actions: const [],
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Text(
-              'Discover the most modern furniture',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 22.0,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 1,
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                shadowColor: Colors.grey[20],
+                elevation: 5.0,
+              ),
+              child: Text(
+                "Add To Cart".toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
