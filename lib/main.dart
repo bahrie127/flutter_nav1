@@ -12,42 +12,31 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ButtonWidget(),
+      home: ImageWidget(),
     );
   }
 }
 
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({Key? key}) : super(key: key);
+class ImageWidget extends StatelessWidget {
+  const ImageWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Button"),
+        title: const Text("Images"),
         actions: const [],
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                shadowColor: Colors.grey[20],
-                elevation: 5.0,
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
-              child: Text(
-                "Add To Cart".toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
-              ),
+              child: Image.asset('assets/images/furniture/img_product_2.png'),
             ),
           ],
         ),
