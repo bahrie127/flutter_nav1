@@ -36,7 +36,7 @@ class ImageWidget extends StatelessWidget {
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
               ),
-              child: Image.asset('assets/images/furniture/img_product_2.png'),
+              child: Image.asset('assets/images/img_product.png'),
             ),
           ],
         ),
