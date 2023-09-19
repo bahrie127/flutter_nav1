@@ -12,9 +12,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Text('Jago Flutter'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Jago Flutter'),
+        ),
+        body: const Text('Belajar Bersama Jago Flutter'),
+      ),
     );
   }
 }
-
-
