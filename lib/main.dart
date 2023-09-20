@@ -25,9 +25,8 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  final dropdownList = <String>['Flutter', 'Dart', 'Java', 'Scala', 'Python'];
-  String selected = 'Flutter';
-
+  bool isOn = false;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,35 +36,19 @@ class _FormWidgetState extends State<FormWidget> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Text('Your Favorite Language:'),
+            const Text('Connect Instagram'),
             const SizedBox(
               width: 8,
             ),
-            DropdownButton(
-              value: selected,
-              icon: const Icon(Icons.arrow_downward),
-              iconSize: 20,
-              style: TextStyle(color: Colors.blue[600]),
-              underline: Container(
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Colors.grey,
-                      width: 3,
-                    ),
-                  ),
-                ),
-              ),
-              items: dropdownList
-                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                  .toList(),
-              onChanged: (String? val) {
-                setState(() {
-                  if (val != null) selected = val;
-                });
+            Switch(
+              value: isOn,
+              onChanged: (bool? val) {
+                if (val != null) {
+                  setState(() {
+                    isOn = val;
+                  });
+                }
               },
             ),
           ],
