@@ -12,109 +12,62 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SizedBoxWidget(),
+      home: WrapWidget(),
     );
   }
 }
 
-class SizedBoxWidget extends StatelessWidget {
-  const SizedBoxWidget({Key? key}) : super(key: key);
+class WrapWidget extends StatelessWidget {
+  WrapWidget({Key? key}) : super(key: key);
+
+  final List<Color> colors = [
+    Colors.blue,
+    Colors.cyan,
+    Colors.amber,
+    Colors.red,
+    Colors.green,
+    Colors.grey,
+    Colors.lightGreen,
+    Colors.blueGrey,
+    Colors.purple,
+    Colors.deepPurple,
+    Colors.yellow,
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SizedBox'),
+        title: const Text('JagoFlutter - Wrap'),
+        actions: const [],
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Description",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            const Text(
-              "Curabitur commodo turpis id placerat mattis. Mauris euismod arcu id orci fringilla sodales. Proin congue eleifend ipsum, eleifend porttitor mi ullamcorper.",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Size",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 4.0),
-                    Text(
-                      "Height 120 cm",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    SizedBox(height: 2.0),
-                    Text(
-                      "Width 80 cm",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 2.5,
-                  child:  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Treatment",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 4.0),
-                      Text(
-                        "Jati Wood, Canvas",
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                      SizedBox(height: 2.0),
-                      Text(
-                        "Amazing Love",
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ],
+            Wrap(
+              spacing: 20,
+              runSpacing: 10,
+              children: colors.map((color) {
+                return InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 3, color: Colors.grey),
+                        color: color,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            offset: Offset.zero,
+                            blurRadius: 15,
+                          )
+                        ]),
                   ),
-                ),
-              ],
+                );
+              }).toList(),
             ),
           ],
         ),
