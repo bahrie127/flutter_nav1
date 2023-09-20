@@ -12,43 +12,41 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CenterWidget(),
+      home: ExpandedWidget(),
     );
   }
 }
 
-class CenterWidget extends StatelessWidget {
-  const CenterWidget({Key? key}) : super(key: key);
+class ExpandedWidget extends StatelessWidget {
+  const ExpandedWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Center'),
+        title: const Text('Expanded'),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
+        child:  Column(
           children: [
-            Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  shadowColor: Colors.grey[20],
-                  elevation: 5.0,
-                ),
-                child: Text(
-                  "Add To Cart".toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
+            Row(
+              children: [
+                Icon(Icons.arrow_back_ios),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'List Checklist',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
-              ),
+                Icon(
+                  Icons.check,
+                  color: Colors.blue,
+                )
+              ],
             ),
           ],
         ),
