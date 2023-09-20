@@ -25,7 +25,7 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  String gender = 'male';
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,46 +37,25 @@ class _FormWidgetState extends State<FormWidget> {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            const Text('Gender :'),
-            const SizedBox(
-              width: 8,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Radio(
-                  value: 'male',
-                  groupValue: gender,
-                  onChanged: (String? val) {
-                    setState(() {
-                      if (val != null) {
-                        gender = val;
-                      }
-                    });
-                  },
-                ),
-                const Text('Male'),
-              ],
+            Checkbox(
+              value: isChecked,
+              activeColor: Colors.blue,
+              onChanged: (val) {
+                setState(() {
+                  if (val != null) {
+                    isChecked = val;
+                  }
+                });
+              },
             ),
             const SizedBox(
-              width: 16,
+              width: 4,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Radio(
-                  value: 'female',
-                  groupValue: gender,
-                  onChanged: (String? val) {
-                    setState(() {
-                      if (val != null) {
-                        gender = val;
-                      }
-                    });
-                  },
-                ),
-                const Text('Female'),
-              ],
+            const Text(
+              'Agree Term & Conditions',
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+              ),
             ),
           ],
         ),
