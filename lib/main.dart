@@ -12,56 +12,53 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FormWidget(),
+      home: DialogWiget(),
     );
   }
 }
 
-class FormWidget extends StatefulWidget {
-  const FormWidget({Key? key}) : super(key: key);
+class DialogWiget extends StatefulWidget {
+  const DialogWiget({Key? key}) : super(key: key);
 
   @override
-  State<FormWidget> createState() => _FormWidgetState();
+  State<DialogWiget> createState() => _DialogWigetState();
 }
 
-class _FormWidgetState extends State<FormWidget> {
+class _DialogWigetState extends State<DialogWiget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Form'),
+        title: const Text("Dialog"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: InkWell(
-          onTap: () async {
-            DateTime? pickedDate = await showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100),
-            );
-            debugPrint("pickedDate: $pickedDate");
-          },
-          child: TextFormField(
-            initialValue: '2022-08-01',
-            maxLength: 20,
-            enabled: false,
-            decoration: const InputDecoration(
-              labelText: 'Birth date',
-              labelStyle: TextStyle(
-                color: Colors.blueGrey,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.blueGrey,
-                ),
-              ),
-              suffixIcon: Icon(Icons.date_range),
-              helperText: "What's your birth date?",
+      body: Container(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Info'),
+                      content: const Text('Your order  was placed!'),
+                      actions: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Ok"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Text('Open Dialog'),
             ),
-            onChanged: (value) {},
-          ),
+          ],
         ),
       ),
     );
