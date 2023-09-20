@@ -25,8 +25,6 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,29 +33,35 @@ class _FormWidgetState extends State<FormWidget> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Checkbox(
-              value: isChecked,
-              activeColor: Colors.blue,
-              onChanged: (val) {
-                setState(() {
-                  if (val != null) {
-                    isChecked = val;
-                  }
-                });
-              },
-            ),
-            const SizedBox(
-              width: 4,
-            ),
-            const Text(
-              'Agree Term & Conditions',
-              style: TextStyle(
-                decoration: TextDecoration.underline,
+        child: InkWell(
+          onTap: () async {
+            DateTime? pickedDate = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(2000),
+              lastDate: DateTime(2100),
+            );
+            debugPrint("pickedDate: $pickedDate");
+          },
+          child: TextFormField(
+            initialValue: '2022-08-01',
+            maxLength: 20,
+            enabled: false,
+            decoration: const InputDecoration(
+              labelText: 'Birth date',
+              labelStyle: TextStyle(
+                color: Colors.blueGrey,
               ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blueGrey,
+                ),
+              ),
+              suffixIcon: Icon(Icons.date_range),
+              helperText: "What's your birth date?",
             ),
-          ],
+            onChanged: (value) {},
+          ),
         ),
       ),
     );
