@@ -12,43 +12,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PaddingWidget(),
+      home: AspectRatioWidget(),
     );
   }
 }
 
-class PaddingWidget extends StatelessWidget {
-  const PaddingWidget({Key? key}) : super(key: key);
+class AspectRatioWidget extends StatelessWidget {
+  const AspectRatioWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Padding'),
-        actions: const [],
+        title: const Text('Aspect Ratio'),
       ),
       body: Container(
-        height: 500,
-        width: 300,
-        margin: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(border: Border.all()),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: 20,
-                top: 30,
-                bottom: 40,
+            AspectRatio(
+              aspectRatio: 180 / 240,
+              child: Container(
+                color: Colors.blue,
               ),
-              child: Text(
-                'Categories',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+            )
           ],
         ),
       ),
