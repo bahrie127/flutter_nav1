@@ -29,7 +29,7 @@ class _DialogWigetState extends State<DialogWiget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("BottomSheet"),
+        title: const Text("Snackbar"),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
@@ -37,35 +37,14 @@ class _DialogWigetState extends State<DialogWiget> {
           children: [
             ElevatedButton(
               onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text('Your order was placed!'),
-                            const SizedBox(
-                              height: 20.0,
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text("Ok"),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    backgroundColor: Colors.blue,
+                    content: Text('Your request is successful'),
+                  ),
                 );
               },
-              child: const Text('Open BottomSheet'),
+              child: const Text('Open snackbar'),
             ),
           ],
         ),
