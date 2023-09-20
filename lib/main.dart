@@ -12,44 +12,52 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ColumnWidget(),
+      home: RowWidget(),
     );
   }
 }
 
-class ColumnWidget extends StatelessWidget {
-  const ColumnWidget({Key? key}) : super(key: key);
+class RowWidget extends StatelessWidget {
+  const RowWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Column"),
+        title: const Text("Row"),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
-        child:  Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
           children: [
-            Text(
-              'Stylish Chair',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Rp 350.000',
-              style: TextStyle(
-                fontSize: 20,
-                color: Color(0xFF9A9390),
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.arrow_back_ios),
+                  ),
+                ),
+                const Text(
+                  "Detail",
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.share,
+                    size: 32.0,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
