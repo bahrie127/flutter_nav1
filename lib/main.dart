@@ -12,49 +12,43 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StackWidget(),
+      home: PaddingWidget(),
     );
   }
 }
 
-class StackWidget extends StatelessWidget {
-  const StackWidget({Key? key}) : super(key: key);
+class PaddingWidget extends StatelessWidget {
+  const PaddingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Stack'),
+        title: const Text('Padding'),
+        actions: const [],
       ),
       body: Container(
-        padding: const EdgeInsets.all(10.0),
-        child:  Column(
+        height: 500,
+        width: 300,
+        margin: const EdgeInsets.all(10.0),
+        decoration: BoxDecoration(border: Border.all()),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Icon(
-                  Icons.shopping_cart,
-                  size: 50,
+            Padding(
+              padding: EdgeInsets.only(
+                left: 20,
+                top: 30,
+                bottom: 40,
+              ),
+              child: Text(
+                'Categories',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
                 ),
-                Positioned(
-                  top: -4.0,
-                  right: -4.0,
-                  child: CircleAvatar(
-                    radius: 10,
-                    backgroundColor: Colors.red,
-                    child: Text(
-                      '3',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            )
+              ),
+            ),
           ],
         ),
       ),
