@@ -25,8 +25,8 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  TextEditingController textController =
-      TextEditingController(text: 'John Due');
+  final dropdownList = <String>['Flutter', 'Dart', 'Java', 'Scala', 'Python'];
+  String selected = 'Flutter';
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +36,39 @@ class _FormWidgetState extends State<FormWidget> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: TextField(
-          maxLength: 20,
-          controller: textController,
-          decoration: const InputDecoration(
-            labelText: 'Name',
-            labelStyle: TextStyle(
-              color: Colors.blueGrey,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Text('Your Favorite Language:'),
+            const SizedBox(
+              width: 8,
             ),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.blueGrey,
+            DropdownButton(
+              value: selected,
+              icon: const Icon(Icons.arrow_downward),
+              iconSize: 20,
+              style: TextStyle(color: Colors.blue[600]),
+              underline: Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.grey,
+                      width: 3,
+                    ),
+                  ),
+                ),
               ),
+              items: dropdownList
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                  .toList(),
+              onChanged: (String? val) {
+                setState(() {
+                  if (val != null) selected = val;
+                });
+              },
             ),
-            helperText: "What's your name?",
-          ),
-          onChanged: (value) {},
+          ],
         ),
       ),
     );
