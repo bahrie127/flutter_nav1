@@ -12,49 +12,45 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CircleAvatarWidget(),
+      home: ColumnWidget(),
     );
   }
 }
 
-class CircleAvatarWidget extends StatelessWidget {
-  CircleAvatarWidget({Key? key}) : super(key: key);
-
-  final List<Color> colors = [
-    Colors.blue,
-    Colors.cyan,
-    Colors.amber,
-  ];
+class ColumnWidget extends StatelessWidget {
+  const ColumnWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("CircleAvatar"),
-        actions: const [],
+        title: const Text("Column"),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
+        child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(
-                "https://i.pravatar.cc/300",
+            Text(
+              'Stylish Chair',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
               ),
             ),
-            Row(
-              children: [
-                ...List.generate(
-                  colors.length,
-                  (index) => CircleAvatar(
-                    radius: 40,
-                    backgroundColor: colors[index],
-                  ),
-                ),
-              ],
-            )
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Rp 350.000',
+              style: TextStyle(
+                fontSize: 20,
+                color: Color(0xFF9A9390),
+                fontWeight: FontWeight.w400,
+                letterSpacing: 1,
+              ),
+            ),
           ],
         ),
       ),
