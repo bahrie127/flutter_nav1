@@ -29,7 +29,7 @@ class _DialogWigetState extends State<DialogWiget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Dialog"),
+        title: const Text("BottomSheet"),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
@@ -37,26 +37,35 @@ class _DialogWigetState extends State<DialogWiget> {
           children: [
             ElevatedButton(
               onPressed: () {
-                showDialog(
+                showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Info'),
-                      content: const Text('Your order  was placed!'),
-                      actions: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text("Ok"),
+                    return Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Text('Your order was placed!'),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Ok"),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     );
                   },
                 );
               },
-              child: const Text('Open Dialog'),
+              child: const Text('Open BottomSheet'),
             ),
           ],
         ),
