@@ -12,60 +12,55 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ListViewWidget(),
+      home: GridViewWidget(),
     );
   }
 }
 
-class ListViewWidget extends StatelessWidget {
-  ListViewWidget({Key? key}) : super(key: key);
-
-  final List<String> categories = [
-    'All',
-    'Living Room',
-    'Bed Room',
-    'Dining Room',
-    'Kitchen',
-    'Pool',
-    'Park',
-    'Carport'
-  ];
+class GridViewWidget extends StatelessWidget {
+  const GridViewWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ListView"),
+        title: const Text("GriView"),
+        actions: const [],
       ),
-      body: ListView.builder(
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {},
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 150),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.grey,
-              ),
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 24,
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-              child: Text(
-                categories[index],
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 1,
-                ),
+      body: Container(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 185 / 243,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                children: [
+                  ...List.generate(
+                    6,
+                    (index) => Container(
+                      height: 300,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            offset: Offset.zero,
+                            blurRadius: 15.0,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }
