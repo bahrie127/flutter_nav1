@@ -12,64 +12,46 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WrapWidget(),
+      home: FormWidget(),
     );
   }
 }
 
-class WrapWidget extends StatelessWidget {
-  WrapWidget({Key? key}) : super(key: key);
+class FormWidget extends StatefulWidget {
+  const FormWidget({Key? key}) : super(key: key);
 
-  final List<Color> colors = [
-    Colors.blue,
-    Colors.cyan,
-    Colors.amber,
-    Colors.red,
-    Colors.green,
-    Colors.grey,
-    Colors.lightGreen,
-    Colors.blueGrey,
-    Colors.purple,
-    Colors.deepPurple,
-    Colors.yellow,
-  ];
+  @override
+  State<FormWidget> createState() => _FormWidgetState();
+}
+
+class _FormWidgetState extends State<FormWidget> {
+  TextEditingController textController =
+      TextEditingController(text: 'John Due');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('JagoFlutter - Wrap'),
-        actions: const [],
+        title: const Text('Form'),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Wrap(
-              spacing: 20,
-              runSpacing: 10,
-              children: colors.map((color) {
-                return InkWell(
-                  onTap: () {},
-                  child: Container(
-                    width: 45,
-                    height: 45,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 3, color: Colors.grey),
-                        color: color,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            offset: Offset.zero,
-                            blurRadius: 15,
-                          )
-                        ]),
-                  ),
-                );
-              }).toList(),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: TextField(
+          maxLength: 20,
+          controller: textController,
+          decoration: const InputDecoration(
+            labelText: 'Name',
+            labelStyle: TextStyle(
+              color: Colors.blueGrey,
             ),
-          ],
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.blueGrey,
+              ),
+            ),
+            helperText: "What's your name?",
+          ),
+          onChanged: (value) {},
         ),
       ),
     );
