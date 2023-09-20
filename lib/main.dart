@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget/navigation_push.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,43 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DialogWiget(),
+      home: NavigationPush(),
     );
   }
 }
 
-class DialogWiget extends StatefulWidget {
-  const DialogWiget({Key? key}) : super(key: key);
-
-  @override
-  State<DialogWiget> createState() => _DialogWigetState();
-}
-
-class _DialogWigetState extends State<DialogWiget> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Snackbar"),
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    backgroundColor: Colors.blue,
-                    content: Text('Your request is successful'),
-                  ),
-                );
-              },
-              child: const Text('Open snackbar'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
