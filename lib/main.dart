@@ -12,53 +12,49 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: GridViewWidget(),
+      home: StackWidget(),
     );
   }
 }
 
-class GridViewWidget extends StatelessWidget {
-  const GridViewWidget({Key? key}) : super(key: key);
+class StackWidget extends StatelessWidget {
+  const StackWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("GriView"),
-        actions: const [],
+        title: const Text('Stack'),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
+        child:  Column(
           children: [
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 185 / 243,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                children: [
-                  ...List.generate(
-                    6,
-                    (index) => Container(
-                      height: 300,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            offset: Offset.zero,
-                            blurRadius: 15.0,
-                          )
-                        ],
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Icon(
+                  Icons.shopping_cart,
+                  size: 50,
+                ),
+                Positioned(
+                  top: -4.0,
+                  right: -4.0,
+                  child: CircleAvatar(
+                    radius: 10,
+                    backgroundColor: Colors.red,
+                    child: Text(
+                      '3',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
+                )
+              ],
+            )
           ],
         ),
       ),
