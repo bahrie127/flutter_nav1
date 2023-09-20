@@ -25,8 +25,8 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  bool isOn = false;
-  
+  String gender = 'male';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,19 +37,46 @@ class _FormWidgetState extends State<FormWidget> {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            const Text('Connect Instagram'),
+            const Text('Gender :'),
             const SizedBox(
               width: 8,
             ),
-            Switch(
-              value: isOn,
-              onChanged: (bool? val) {
-                if (val != null) {
-                  setState(() {
-                    isOn = val;
-                  });
-                }
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Radio(
+                  value: 'male',
+                  groupValue: gender,
+                  onChanged: (String? val) {
+                    setState(() {
+                      if (val != null) {
+                        gender = val;
+                      }
+                    });
+                  },
+                ),
+                const Text('Male'),
+              ],
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Radio(
+                  value: 'female',
+                  groupValue: gender,
+                  onChanged: (String? val) {
+                    setState(() {
+                      if (val != null) {
+                        gender = val;
+                      }
+                    });
+                  },
+                ),
+                const Text('Female'),
+              ],
             ),
           ],
         ),
